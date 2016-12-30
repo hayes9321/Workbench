@@ -54,7 +54,7 @@ singlyLinkedList.push(4);
 singlyLinkedList.push(5);
 
 console.log(singlyLinkedList.head.next.next.next);
-
+ 
 
 //check the values by traversing LinkedList
 // console.log(singlyLinkedList.head);
