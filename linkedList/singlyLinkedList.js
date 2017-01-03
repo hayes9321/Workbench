@@ -95,7 +95,7 @@ console.log(singlyLinkedList.head.next.next);
 
 /*******************************************************************************
 
-Big O:
+Big O Notation:
 Space complexity: O(n).
 
 Run Time(Time Complexity):
