@@ -3,7 +3,6 @@
 /*
   To create a linked list the first step is to define
   a node object that will point to the next node. 
-
   For the linked list it should have a ponter to point to the node 
   of the linked list, It should have methods for
   adding and removing nodes from the list. 
@@ -81,42 +80,13 @@ LinkedList.prototype.remove = function(val){
   }
 }
 
-//Create an instance of a linked list and add values.
-var singlyLinkedList = new LinkedList();
-
-singlyLinkedList.push(2);
-singlyLinkedList.push(3);
-singlyLinkedList.push(4);
-singlyLinkedList.push(5);
-
-singlyLinkedList.remove(3);
-singlyLinkedList.remove(2);
-
- 
-//check the values by traversing LinkedList
-console.log(singlyLinkedList.head);
-console.log(singlyLinkedList.head.next);
-console.log(singlyLinkedList.head.next.next);
-
 
 /*******************************************************************************
-
 Big O:
 Space complexity: O(n).
-
 Run Time(Time Complexity):
 Access: O(n);
 Search: O(n);
 Insertion: O(1);
 Deletion: O(1);
 *******************************************************************************/
-
-
-
-
-
-
-
-
-
-
