@@ -43,7 +43,37 @@ LinkedList.prototype.push = function(val){
 	}
 }
 
-//Next add remove class.
+//Next add remove class, includes 3 remove cases.
+LinkedList.prototype.remove = function(val){
+	var current = this.head;
+
+	//The targeted node is in the head. Replace head with the next node.
+	if(current.value == val){
+		this.head = current.next;
+	}
+
+	//The targeted node is in the middle of a LinkedList, you have to make the node 
+	// after your taregted node before the tail will be null.
+	else{
+		var previous = current;
+
+		//loop through linked list heads
+		while(current.next){
+			if(current.value == val){
+				previous.next = current.next;
+				break;
+			}
+			previous = current;
+			current = current.next;
+		}
+
+		//The targeted node is in the tail. You just have to remove it from 
+		//the tail. Hence next of the node before hte tail will be null
+		if(current.value == val){
+			previous.next == null;
+		}
+	}
+}
 
 //Create an instance of a linked list and add values.
 var singlyLinkedList = new LinkedList();
@@ -53,13 +83,34 @@ singlyLinkedList.push(3);
 singlyLinkedList.push(4);
 singlyLinkedList.push(5);
 
-console.log(singlyLinkedList.head.next.next.next);
- 
+singlyLinkedList.remove(3);
+singlyLinkedList.remove(2);
 
+ 
 //check the values by traversing LinkedList
-// console.log(singlyLinkedList.head);
-// console.log(singlyLinkedList.head.next);
-// console.log(singlyLinkedList.head.next.next);
-// console.log(singlyLinkedList.head.next.next.next);
+console.log(singlyLinkedList.head);
+console.log(singlyLinkedList.head.next);
+console.log(singlyLinkedList.head.next.next);
+
+
+/*******************************************************************************
+
+Big O:
+Space complexity: O(n).
+
+Run Time(Time Complexity):
+Access: O(n);
+Search: O(n);
+Insertion: O(1);
+Deletion: O(1);
+*******************************************************************************/
+
+
+
+
+
+
+
+
 
 
