@@ -62,45 +62,75 @@ DoublyList.prototype.add = function(value){
 }
 
 //remove from an instance of a DoublylinkedList
-DoublyList.prototype.remove = function(postion){
-	var currentNode = this.head;
-	var length = this.length;
-	var count = 0;
-	var beforeNodeToDelete = null;
-	var nodeToDelete = null;
-	var deleteNode = null;
-	//1st Case: invalid position
-	if(positon < 0 || positon > length){
-		throw new Error(message.failure);
-	}
-	//2nd Case: The first node is removed
-	if(postion === 1){
-		this.head = currentNode.next;
-		deleteNode = currentNode;
-		currentNode = null;
-		this.length--;
+DoublyList.prototype.remove = function(position) {
+ var currentNode = this.head,
+  length = this._length,
+  count = 1,
+  message = {failure: 'Failure: non-existent node in this list.'},
+  beforeNodeToDelete = null,
+  nodeToDelete = null,
+  deletedNode = null;
 
-		return deleteNode;
-	}
-	//3rd Case: anyother node is removed
-	while (count < postion){
-		beforeNodeToDelete = nodeToDelete;
+ // 1st use-case: an invalid position
+ if (length === 0 || position < 1 || position > length) {
+  throw new Error(message.failure);
+ }
 
-		nodeToDelete = currentNode;
-		nodeToDelete = currentNode.next;
-		count++;
-	}
+	 // 2nd use-case: the first node is removed
+	 if (position === 1) {
+   this.head = currentNode.next;
 
-	beforeNodeToDelete.next = nodeToDelete.next;
+   // 2nd use-case: there is a second node
+   if (!this.head) {
+    this.head.previous = null;
+   // 2nd use-case: there is no second node
+   } else {
+   	this.tail = null;
+   }
 
-}
+ // 3rd use-case: the last node is removed
+ } else if (position === this._length) {
+  this.tail = this.tail.previous;
+  this.tail.next = null;
+ // 4th use-case: a middle node is removed
+ } else {
+  while (count < position) {
+      currentNode = currentNode.next;
+      count++;
+  }
+
+  beforeNodeToDelete = currentNode.previous;
+  nodeToDelete = currentNode;
+  afterNodeToDelete = currentNode.next;
+
+  beforeNodeToDelete.next = afterNodeToDelete;
+  afterNodeToDelete.previous = beforeNodeToDelete;
+  deletedNode = nodeToDelete;
+  nodeToDelete = null;
+ }
+
+ this._length--;
+
+ return message.success;
+};
 
 //remove from an instance of a DoublyLinkedList
 DoublyList.prototype.searchNodeAt = function(value){
-	//1st Case
-	//2nd Case
-	//3rd Case
-}
+	var currentNode = this.head;
+	var length = this.length;
+	var count = 1;
+	var message = {failure: 'Failure: non-existent node in this list.'};
+	//1st Case: invalid position
+	if(length === 0 || position < 1 || postion > length){
+		throw new Error(message.failure);
+	}
+	//2nd Case: a valid posiiton
+	while(count < postion){
+		currentNode = currentNode.next;
+		count++;
+	}
+	return currentNode;
+};
 
 
 

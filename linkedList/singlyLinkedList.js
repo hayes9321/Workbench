@@ -13,35 +13,41 @@
 to create add elements, willuse a push method in prototype
 of the object
 */
+//Create Node class
+function Node(value){
+	this.value = val;
+	this.next = null;
+}
 
-//class
-function LinkedList(){
+function SinglyList(){
 	this.head = null;
+	this.length = 0;
 }
 
 /*
-	Push method will take value and will create a node object.
-	if there is no head, then node will be the value of head.
-	If there is a head, go through the linked list chain to read
-	the tail(tail is defined as where the next node is === null)	
+	Add method will take value and will create a node object. If there
+	is no head present then the value will be assigned as the head.	
 */
 
-LinkedList.prototype.push = function(val){
-	var node = {
-		value: val,
-		next: null
-	}
-	if(!this.head){
+LinkedList.prototype.add = function(val){
+	var node = new Node();
+	var currentNode = this.head;
+
+	//1st case: an empty list
+	if(!currentNode){
 		this.head = node;
+		this.length++;
+
+		return node;
 	}
-	else{
-		current = this.head;
-		while(current.next){
-			current = current.next;
-		}
-		current.next = node;
+	//2nd case a non-empty list
+	while(currentNode.next){
+		currentNode = currentNode.next;
 	}
-}
+	currentNode.next = node;
+	this.length++;
+
+	return node;
 
 //Next add remove class, includes 3 remove cases.
 LinkedList.prototype.remove = function(val){
