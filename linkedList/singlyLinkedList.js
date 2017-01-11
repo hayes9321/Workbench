@@ -1,85 +1,137 @@
-//Creating a singly linked list
+//Singly linked list
 
-/*
-  To create a linked list the first step is to define
-  a node object that will point to the next node. 
-  For the linked list it should have a ponter to point to the node 
-  of the linked list, It should have methods for
-  adding and removing nodes from the list. 
-*/
-
-/*First, create object that has one property head(a pointer)
-to create add elements, willuse a push method in prototype
-of the object
-*/
-//Create Node class
+//Create Node Class (accepts a value parameter)
 function Node(value){
-  this.value = val;
+  this.value = value;
   this.next = null;
 }
-
+//Create SinglyList Class
 function SinglyList(){
   this.head = null;
   this.length = 0;
 }
 
-/*
-  Add method will take value and will create a node object. If there
-  is no head present then the value will be assigned as the head. 
-*/
-
-LinkedList.prototype.add = function(val){
-  var node = new Node();
+//Build add method for SinglyList Class (accepts a value parameter)
+SinglyList.prototype.add = function(value){
+  //create and instance of a new Node with the value parameter
+  var node = new Node(value);
+  //keep track of the current node
   var currentNode = this.head;
 
-  //1st case: an empty list
+  //Case 1: No current head/ no Nodes present
   if(!currentNode){
     this.head = node;
     this.length++;
-
     return node;
   }
-  //2nd case a non-empty list
+  /*Case 2: there is a head and Nodes present
+  - during each iteration, we evaluate if currentNode.next points to another
+    node.(During the first iteration, currentNode is always pointing to
+    the head of a list)
+  */
   while(currentNode.next){
+    //this iterates through the list until it reach the end and the breaks the loop
     currentNode = currentNode.next;
   }
+  //once the loop breaks assign node to current.next, 
   currentNode.next = node;
+  //increment the length by 1
   this.length++;
-
+  //return node
   return node;
-
-//Next add remove class, includes 3 remove cases.
-LinkedList.prototype.remove = function(val){
-  var current = this.head;
-
-  //The targeted node is in the head. Replace head with the next node.
-  if(current.value == val){
-    this.head = current.next;
-  }
-
-  //The targeted node is in the middle of a LinkedList, you have to make the node 
-  // after your taregted node before the tail will be null.
-  else{
-    var previous = current;
-
-    //loop through linked list heads
-    while(current.next){
-      if(current.value == val){
-        previous.next = current.next;
-        break;
-      }
-      previous = current;
-      current = current.next;
-    }
-
-    //The targeted node is in the tail. You just have to remove it from 
-    //the tail. Hence next of the node before hte tail will be null
-    if(current.value == val){
-      previous.next == null;
-    }
-  }
 }
 
+//Build remove method for SinglyList Class (accepts a postion parameter)
+SinglyList.prototype.remove = function(position){
+  var currentNode = this.head;
+  var length = this.length;
+  var count = 0;
+  var message = {failure: 'Failure: non-existent node in this list.'};
+  var beforeNodeToDelete = null;
+  var nodeToDelete = null;
+  var deletedNode = null;
+
+  //Case 1: Invalid Position
+  if(position < 0 || position > length){
+    throw new Error(message.failure)
+  }
+  
+  //Case 2: The first Node is removed, which is also the head
+  if(position === 1){
+    //The head is reassigned to currentNode.next
+    this.head = currentNode.next;
+    //deletedNode points to currentNode
+    deletedNode = currentNode;
+    //currentNode will be reassigned to null
+    currentNode = null;
+    //the length will be decremented by -1
+    length--;
+
+    //deletedNode will be returned
+    return deletedNode;
+  }
+
+  //Case 3: Any other Node is removed
+  while(count < position){
+    //Tracking node before node to be deleted
+    beforeNodeToDelete = currentNode;
+    //Deleting this node 
+    nodeToDelete = currentNode.next;
+    //increment until count < position(that we passed as a parameter) then terminate 
+    count++;
+  }
+
+  //Before deleting nodeToDelete, we must assign its value
+  // of next to the next value of beforeNodeToDelete.
+  beforeNodeToDelete.next = nodeToDelete.next;
+  //Assign deleteNode to NodeToDelete
+  deletedNode = nodeToDelete;
+  //Set node to delete to null
+  nodeToDelete = null;
+  //decrement its length by one
+  this.length--;
+  //return deletedNode
+  return deletedNode;
+};
+
+//Build Search method for SinglyList Class(accepts a postion parameter)
+SinglyList.prototype.search = function(position){ 
+  var currentNode = this.head;
+  var length = this.length;
+  var count = 1;
+  var message = {failure: 'Failure: non-existent node in this list.'};
+  //Case 1: Invalid postion
+  if(length === 0 || position < 1 || position > length){
+    throw new Error(message.failure);
+  }
+  //Case 2: Valid position
+  while(count < position){
+    //walk down the list until you get to the desired postion
+    currentNode = currentNode.next;
+    count++;
+  }
+  return currentNode;
+}
+
+var List = new SinglyList();
+
+List.add(2);
+List.add(4);
+List.add(6);
+List.add(8);
+
+List.remove(2);
+
+List.add(4);
+
+
+console.log(List.head);//node 1
+console.log(List.head.next);//node 2
+console.log(List.head.next.next); //node 3
+console.log(List.head.next.next.next); //node 4
+console.log(List.head.next.next.next.next);
+
+console.log("The node at position 2 is " + List.search(1));
 
 /*******************************************************************************
 Big O:

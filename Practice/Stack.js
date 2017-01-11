@@ -7,10 +7,10 @@ function Stack() {
 
 //push method that adds to the top of stack 
 Stack.prototype.push = function(value) {
-    //Increase the length of our storage
+    //Increase the size of our storeage
     var length = ++this.length;
-    //Assigns length as a key of storage
-    //Assigns value as the value of the key
+    //Assigns size as a key of storage
+    //Asigns value as the value of the key
     this.storage[length] = value;
 };
 
