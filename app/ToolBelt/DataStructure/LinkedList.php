@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Toolbelt\DataStructure\LinkedList;
-
-use App\Toolbelt\DataStructure\LinkedList\Node;
+namespace App\Toolbelt\DataStructure;
 
 Class LinkedList
 {
@@ -37,16 +35,37 @@ Class LinkedList
 
     public function deleteNode($data)
     {
-        if($this->head == null) return;
+        if ($this->head == null) return;
 
         $current = $this->head;
 
-        while($current->next != null) {
-            if($current->next->data == $data) {
+        while ($current->next != null) {
+            if ($current->next->data == $data) {
                 $current->next = $current->next->next;
                 return;
             }
-            $current  = $current->next;
+            $current = $current->next;
         }
     }
 }
+
+class Node
+{
+    public $next;
+
+    public $data;
+
+    /**
+     * Node constructor.
+     * @param $data
+     */
+    public function __construct($data)
+    {
+        $this->data = $data;
+        $this->next = null;
+    }
+}
+
+$LinkedList = new LinkedList();
+
+dd($LinkedList);

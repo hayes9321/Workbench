@@ -5,17 +5,21 @@ namespace App\Console\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use App\Toolbelt\DataStructure\LinkedList\Node;
-use App\Toolbelt\DataStructure\LinkedList\LinkedList;
+use Symfony\Component\Console\Input\InputArgument;
 
 class RunCommand extends Command
 {
-    // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:run';
+    protected static $defaultName = 'app:run:class';
+
+    protected $classMap = [
+        'LinkedListNodeTraining' => 'App\Training\Cake\LinkedList\LinkedListNodeTraining',
+        'LinkedList' => 'App\Toolbelt\DataStructure\LinkedList',
+        'DoublyLinkedList' => 'App\Toolbelt\DataStructure\DoublyLinkedList'
+    ];
 
     protected function configure()
     {
-        // ...
+        $this->addArgument('class', InputArgument::REQUIRED, 'Enter the class you would like to run. This command will call the classes handle method');
     }
 
     /**
@@ -25,17 +29,15 @@ class RunCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+            $className = $input->getArgument("class");
 
-        $list = new LinkedList();
+            $class = $this->aliasLookup($className);
 
-        $list->append("1");
+            return (new $class())->handle();
+    }
 
-        $list->append("2");
-
-        $list->append("3");
-
-        $list->deleteNode("2");
-
-        dd($list);
+    private function aliasLookup($className)
+    {
+        return (array_key_exists($className, $this->classMap)) ? $this->classMap[$className] : dd("Class Not Found");
     }
 }
