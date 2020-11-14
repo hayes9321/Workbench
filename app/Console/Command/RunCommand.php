@@ -9,13 +9,15 @@ use Symfony\Component\Console\Input\InputArgument;
 
 class RunCommand extends Command
 {
+    protected $classMap;
+
     protected static $defaultName = 'app:run:class';
 
-    protected $classMap = [
-        'LinkedListNodeTraining' => 'App\Training\Cake\LinkedList\LinkedListNodeTraining',
-        'LinkedList' => 'App\Toolbelt\DataStructure\LinkedList',
-        'DoublyLinkedList' => 'App\Toolbelt\DataStructure\DoublyLinkedList'
-    ];
+    public function __construct()
+    {
+        parent::__construct();
+        $this->classMap = include('class-map.php');
+    }
 
     protected function configure()
     {
