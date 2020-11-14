@@ -69,7 +69,7 @@ class LinkedListCyclesTraining
             $pointerOne = $pointerOne->getNext();
             $pointerTwo = $pointerTwo->getNext()->getNext();
 
-            if ($pointerOne->getValue() === $pointerTwo->getValue()) {
+            if ($pointerOne === $pointerTwo) {
                 return true;
             }
         }
