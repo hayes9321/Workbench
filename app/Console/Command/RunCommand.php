@@ -29,11 +29,11 @@ class RunCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-            $className = $input->getArgument("class");
+        $className = $input->getArgument("class");
 
-            $class = $this->aliasLookup($className);
+        $class = $this->aliasLookup($className);
 
-            return (new $class())->handle();
+        return (new $class())->handle();
     }
 
     private function aliasLookup($className)
