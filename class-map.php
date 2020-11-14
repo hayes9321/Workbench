@@ -13,5 +13,6 @@
 return [
     'LinkedListNodeTraining' => 'App\Training\Cake\LinkedList\LinkedListNodeTraining',
     'LinkedList' => 'App\Toolbelt\DataStructure\LinkedList',
-    'DoublyLinkedList' => 'App\Toolbelt\DataStructure\DoublyLinkedList'
+    'DoublyLinkedList' => 'App\Toolbelt\DataStructure\DoublyLinkedList',
+    'LinkedListCyclesTraining' => 'App\Training\Cake\LinkedList\LinkedListCyclesTraining'
 ];
