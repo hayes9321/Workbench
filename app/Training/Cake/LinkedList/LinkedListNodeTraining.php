@@ -2,49 +2,18 @@
 
 namespace App\Training\Cake\LinkedList;
 
-/*
-|--------------------------------------------------------------------------
-| Description
-|--------------------------------------------------------------------------
-|
-| Delete a node from a singly-linked list, ↴ given only a variable pointing to that node.
-|
-| Use the class below
-|
-*/
-class LinkedListNode
-{
-    private $value;
-    private $next = null;
-
-    public function __construct($value)
-    {
-        $this->value = $value;
-    }
-
-    public function getNext()
-    {
-        return $this->next;
-    }
-
-    public function setNext($next)
-    {
-        $this->next = $next;
-    }
-
-    public function getValue()
-    {
-        return $this->value;
-    }
-
-    public function setValue($value)
-    {
-        $this->value = $value;
-    }
-}
-
 class LinkedListNodeTraining
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Description
+    |--------------------------------------------------------------------------
+    |
+    | Delete a node from a singly-linked list, ↴ given only a variable pointing to that node.
+    |
+    | Use the class below
+    |
+    */
     public static function handle()
     {
         // SETUP
@@ -80,5 +49,36 @@ class LinkedListNodeTraining
         deleteNode($b);
 
         dd($a);
+    }
+}
+
+class LinkedListNode
+{
+    private $value;
+    private $next = null;
+
+    public function __construct($value)
+    {
+        $this->value = $value;
+    }
+
+    public function getNext()
+    {
+        return $this->next;
+    }
+
+    public function setNext($next)
+    {
+        $this->next = $next;
+    }
+
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    public function setValue($value)
+    {
+        $this->value = $value;
     }
 }
