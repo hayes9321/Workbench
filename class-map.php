@@ -16,5 +16,6 @@ return [
     'DoublyLinkedList'          => 'App\Toolbelt\DataStructure\DoublyLinkedList',
     'LinkedListCyclesTraining'  => 'App\Training\Cake\LinkedList\LinkedListCyclesTraining',
     'ReverseLinkedListTraining' => 'App\Training\Cake\LinkedList\ReverseLinkedListTraining',
-    'KthToLastNodeTraining'     => 'App\Training\Cake\LinkedList\KthToLastNodeTraining'
+    'KthToLastNodeTraining'     => 'App\Training\Cake\LinkedList\KthToLastNodeTraining',
+    'AppleStockTraining'        => 'App\Training\Cake\Arr\AppleStockTraining'
 ];
