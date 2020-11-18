@@ -46,7 +46,7 @@ class ProductOfOtherNumbersTraining
         for ($i = 0; $i < count($numbers); $i++) {
             $filterArray = $numbers; // new array, do not want to modify existing array.
 
-            unset($filterArray[$i]); // remove the value from the newly created array
+            unset($filterArray[$i]); // remove the current value from the newly created array
 
             $calculatedProduct = array_product($filterArray); // calculate the product of the new array
 
