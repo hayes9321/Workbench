@@ -48,6 +48,7 @@ class KthToLastNodeTraining
             $currentNode = $currentNode->getNext();
             $listLength++;
         }
+        
         $targetSpot = $listLength - $k;
 
         $currentNode = $headNode;

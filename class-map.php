@@ -18,5 +18,6 @@ return [
     'ReverseLinkedListTraining'     => 'App\Training\Cake\LinkedList\ReverseLinkedListTraining',
     'KthToLastNodeTraining'         => 'App\Training\Cake\LinkedList\KthToLastNodeTraining',
     'AppleStockTraining'            => 'App\Training\Cake\Arr\AppleStockTraining',
-    'ProductOfOtherNumbersTraining' => 'App\Training\Cake\Arr\ProductOfOtherNumbersTraining'
+    'ProductOfOtherNumbersTraining' => 'App\Training\Cake\Arr\ProductOfOtherNumbersTraining',
+    'MergeMeetingTimes'             => 'App\Training\Cake\Arr\MergeMeetingTimes',
 ];
