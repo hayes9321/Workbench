@@ -35,7 +35,7 @@ class MergeMeetingTimes
         // Need to have meetings
         if (count($meetings) < 1) return [];
 
-        //return [new Meeting(0, 1), new Meeting(3, 8), new Meeting(9, 12)]
+        // This is a common approach to sorting a collection in PHP
         usort($meetings, function($a, $b) {
             return $a->getStartTime() > $b->getStartTime();
         });
@@ -46,12 +46,13 @@ class MergeMeetingTimes
             $currentMeeting = $meetings[$i];
             $lastMergedMeeting = $mergedMeetings[count($mergedMeetings) - 1];
 
-            if ($lastMergedMeeting->getEndTime() >= $currentMeeting->getStartTime()) {
-              $latestEndTime = max($lastMergedMeeting->getEndTime(), $currentMeeting->getEndTime());
-              $lastMergedMeeting->setEndTime($latestEndTime);
-            } else {
+            if ($lastMergedMeeting->getEndTime() < $currentMeeting->getStartTime()) {
                 $mergedMeetings[] = $currentMeeting;
+                continue;
             }
+
+            $latestEndTime = max($lastMergedMeeting->getEndTime(), $currentMeeting->getEndTime());
+            $lastMergedMeeting->setEndTime($latestEndTime);
         }
 
         return $mergedMeetings;
